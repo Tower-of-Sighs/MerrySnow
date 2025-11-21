@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sighs.merrysnow.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "merrysnow.refmap.json",
+  "mixins": [
+    "BiomeMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
