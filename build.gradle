@@ -139,6 +139,14 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    maven {
+        // Add curse maven to repositories
+        name = "Curse Maven"
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -165,6 +173,10 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    implementation fg.deobf("curse.maven:embeddium-908741:5681725")
+    implementation fg.deobf("curse.maven:rubidium-extra-654373:6101745")
+    implementation fg.deobf("curse.maven:oculus-581495:6020952")
 
 }
 

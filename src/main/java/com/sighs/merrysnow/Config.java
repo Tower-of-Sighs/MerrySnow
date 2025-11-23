@@ -19,33 +19,36 @@ import java.util.stream.Collectors;
 public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-    private static final ForgeConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER.comment("Whether to log the dirt block on common setup").define("logDirtBlock", true);
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_LAYER;
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_POWDER_SNOW;
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_WEATHER;
+    public static ForgeConfigSpec.DoubleValue SUNNY_SNOW;
+    public static ForgeConfigSpec.ConfigValue<Boolean> RANDOM_SUNNY_SNOW;
 
-    private static final ForgeConfigSpec.IntValue MAGIC_NUMBER = BUILDER.comment("A magic number").defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
+    static final ForgeConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER.comment("What you want the introduction message to be for the magic number").define("magicNumberIntroduction", "The magic number is... ");
+    static {
+        BUILDER.push("Merry Snow");
+        MERRY_SNOW_LAYER = BUILDER
+                .comment("雪片无碰撞。")
+                .define("merrySnowLayer", true);
+        MERRY_POWDER_SNOW = BUILDER
+                .comment("细雪有台阶碰撞箱且无冷冻伤害。")
+                .define("merryPowderSnow", true);
+        MERRY_SNOW_WEATHER = BUILDER
+                .comment("下雪区块不刷怪。")
+                .define("merrySnowWeather", true);
+        BUILDER.pop();
 
-    // a list of strings that are treated as resource locations for items
-    private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER.comment("A list of items to log on common setup.").defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+        BUILDER.push("Sunny Snow");
+        SUNNY_SNOW = BUILDER
+                .comment("晴雪效果系数。")
+                .defineInRange("sunnySnow", 0.5, 0, 1);
+        RANDOM_SUNNY_SNOW = BUILDER
+                .comment("随机晴雪效果。")
+                .define("merrySnowWeather", false);
+        BUILDER.pop();
 
-    static final ForgeConfigSpec SPEC = BUILDER.build();
-
-    public static boolean logDirtBlock;
-    public static int magicNumber;
-    public static String magicNumberIntroduction;
-    public static Set<Item> items;
-
-    private static boolean validateItemName(final Object obj) {
-        return obj instanceof final String itemName && ForgeRegistries.ITEMS.containsKey(new ResourceLocation(itemName));
-    }
-
-    @SubscribeEvent
-    static void onLoad(final ModConfigEvent event) {
-        logDirtBlock = LOG_DIRT_BLOCK.get();
-        magicNumber = MAGIC_NUMBER.get();
-        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
-
-        // convert the list of strings into a set of items
-        items = ITEM_STRINGS.get().stream().map(itemName -> ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName))).collect(Collectors.toSet());
+        SPEC = BUILDER.build();
     }
 }
