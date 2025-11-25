@@ -22,8 +22,11 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_LAYER;
     public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_POWDER_SNOW;
     public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_WEATHER;
+
     public static ForgeConfigSpec.DoubleValue SUNNY_SNOW;
     public static ForgeConfigSpec.ConfigValue<Boolean> RANDOM_SUNNY_SNOW;
+
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> WEATHER_MODIFY ;
 
     static final ForgeConfigSpec SPEC;
 
@@ -47,6 +50,15 @@ public class Config {
         RANDOM_SUNNY_SNOW = BUILDER
                 .comment("随机晴雪效果。")
                 .define("merrySnowWeather", false);
+        BUILDER.pop();
+
+        BUILDER.push("Biome Snow");
+        WEATHER_MODIFY = BUILDER
+                .comment("dd")
+                .defineList("weatherModify",
+                        List.of(),
+                        entry -> entry instanceof String
+                );
         BUILDER.pop();
 
         SPEC = BUILDER.build();

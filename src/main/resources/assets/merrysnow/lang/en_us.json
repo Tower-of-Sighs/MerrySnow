@@ -1,5 +1,7 @@
 {
   "key.categories.merrysnow": "瑞雪物语",
   "key.merrysnow.sunny_snow": "晴雪系数调整",
-  "message.merrysnow.sunny_snow": "晴雪系数: %s"
+
+  "message.merrysnow.sunny_snow": "晴雪系数: %s",
+  "message.merrysnow.copy": "点击复制"
 }
