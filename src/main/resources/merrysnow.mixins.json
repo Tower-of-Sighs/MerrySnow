@@ -5,13 +5,14 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "merrysnow.refmap.json",
   "mixins": [
-    "BiomeMixin",
     "EntityMixin",
     "PowderSnowBlockMixin",
+    "ServerLevelMixin",
     "SnowLayerBlockMixin"
   ],
   "client": [
-    "LevelMixin"
+    "LevelMixin",
+    "BiomeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

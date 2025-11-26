@@ -1,20 +1,10 @@
 package com.sighs.merrysnow;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Forge's config APIs
 @Mod.EventBusSubscriber(modid = MerrySnow.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -26,7 +16,12 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue SUNNY_SNOW;
     public static ForgeConfigSpec.ConfigValue<Boolean> RANDOM_SUNNY_SNOW;
 
-    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> WEATHER_MODIFY ;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_SNOW_WEATHER;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_SNOW_COVER;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_ICE_FREEZE;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> WEATHER_MODIFY;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> SNOW_MODIFY;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> FREEZE_MODIFY;
 
     static final ForgeConfigSpec SPEC;
 
@@ -53,14 +48,57 @@ public class Config {
         BUILDER.pop();
 
         BUILDER.push("Biome Snow");
+        ENFORCE_SNOW_WEATHER = BUILDER
+                .comment("是否全群系下雪：true、false、default")
+                .define("enforceSnowWeather", "true");
+        ENFORCE_SNOW_COVER = BUILDER
+                .comment("是否全群系积雪：true、false、default")
+                .define("enforceSnowCover", "false");
+        ENFORCE_ICE_FREEZE = BUILDER
+                .comment("是否全群系结冰：true、false、default")
+                .define("enforceIceFreeze", "default");
         WEATHER_MODIFY = BUILDER
-                .comment("dd")
+                .comment("\"minecraft:forest=snow\", \"minecraft:ocean=rain\", \"minecraft:jungle=none\"")
                 .defineList("weatherModify",
+                        List.of(),
+                        entry -> entry instanceof String
+                );
+        SNOW_MODIFY = BUILDER
+                .comment("\"minecraft:forest=true\", \"minecraft:ocean=false\"")
+                .defineList("snowModify",
+                        List.of(),
+                        entry -> entry instanceof String
+                );
+        FREEZE_MODIFY = BUILDER
+                .comment("\"minecraft:forest=true\", \"minecraft:ocean=false\"")
+                .defineList("iceModify",
                         List.of(),
                         entry -> entry instanceof String
                 );
         BUILDER.pop();
 
         SPEC = BUILDER.build();
+    }
+
+    public static String getWeatherModify(String id) {
+        for (String b : WEATHER_MODIFY.get()) {
+            String[] entry = b.split("=");
+            if (entry[0].equals(id)) return entry[1];
+        }
+        return "default";
+    }
+    public static String getSnowModify(String id) {
+        for (String b : SNOW_MODIFY.get()) {
+            String[] entry = b.split("=");
+            if (entry[0].equals(id)) return entry[1];
+        }
+        return "default";
+    }
+    public static String getFreezeModify(String id) {
+        for (String b : FREEZE_MODIFY.get()) {
+            String[] entry = b.split("=");
+            if (entry[0].equals(id)) return entry[1];
+        }
+        return "default";
     }
 }

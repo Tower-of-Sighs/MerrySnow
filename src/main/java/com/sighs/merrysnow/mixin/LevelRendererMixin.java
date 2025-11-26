@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = LevelRenderer.class)
 public class LevelRendererMixin {
-    @Redirect(method = "renderSky", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientLevel;getRainLevel(F)F"))
+    @Redirect(method = {"renderSky", "tickRain", "renderSnowAndRain"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ClientLevel;getRainLevel(F)F"))
     private float clear(ClientLevel instance, float v) {
         return Utils.redirectRainLevel(instance, v);
     }

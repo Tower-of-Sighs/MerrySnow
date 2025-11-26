@@ -11,19 +11,37 @@ import net.minecraft.server.level.ServerPlayer;
 public class MerryCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> BiomeCommand =
-                Commands.literal("getBiome")
+                Commands.literal("biomeid")
                         .requires(source -> source.hasPermission(0));
 
-        BiomeCommand.executes(context -> {
+        BiomeCommand.then(Commands.literal("current").executes(context -> {
             ServerPlayer player = context.getSource().getPlayer();
             if (player != null) {
                 String biome = Utils.getBiomeId(player);
                 if (biome != null) {
-                    sendBasicCopyMessage(player, Component.translatable("message.merrysnow.copy").getString() + " " + biome, biome);
+                    sendBasicCopyMessage(player, Component.translatable("message.merrysnow.copy").getString() + " " + Component.translatable("biome." + biome.replace(":", ".")).getString(), biome);
                 }
             }
             return 1;
-        });
+        }));
+        BiomeCommand.then(Commands.literal("all").executes(context -> {
+            ServerPlayer player = context.getSource().getPlayer();
+            if (player != null) {
+                String biome = Utils.getAlBiomeId(player);
+                sendBasicCopyMessage(player, Component.translatable("message.merrysnow.copy").getString() + " [...]", biome);
+            }
+            return 1;
+        }));
+//        BiomeCommand.executes(context -> {
+//            ServerPlayer player = context.getSource().getPlayer();
+//            if (player != null) {
+//                String biome = Utils.getBiomeId(player);
+//                if (biome != null) {
+//                    sendBasicCopyMessage(player, Component.translatable("message.merrysnow.copy").getString() + " " + Component.translatable("biome." + biome.replace(":", ".")).getString(), biome);
+//                }
+//            }
+//            return 1;
+//        });
 
         dispatcher.register(BiomeCommand);
     }
