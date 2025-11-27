@@ -21,6 +21,7 @@ public class MerrySnowEvent {
 
         BlockPos blockPos = event.getEntity().blockPosition();
         Biome biome = event.getLevel().getBiome(blockPos).get();
+        if (!event.getLevel().getLevel().isRaining()) return;
         if (!biome.hasPrecipitation()) return;
         MobCategory category = event.getEntity().getClassification(false);
 

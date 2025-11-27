@@ -24,7 +24,7 @@ public class ConfigAction {
     public static void modifyValue(double delta) {
         double value = Config.SUNNY_SNOW.get();
         if (delta < 0) {
-            value = Math.max(value - 0.1, 0);
+            value = Math.max(value - 0.1, 0.1);
         } else {
             value = Math.min(value + 0.1, 1);
         }

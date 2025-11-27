@@ -41,7 +41,7 @@ public class Config {
         BUILDER.push("Sunny Snow");
         SUNNY_SNOW = BUILDER
                 .comment("晴雪效果系数。")
-                .defineInRange("sunnySnow", 0.5, 0, 1);
+                .defineInRange("sunnySnow", 0.5, 0.1, 1);
         RANDOM_SUNNY_SNOW = BUILDER
                 .comment("随机晴雪效果。")
                 .define("randomSunnySnow", false);
