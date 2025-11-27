@@ -44,7 +44,7 @@ public class Config {
                 .defineInRange("sunnySnow", 0.5, 0, 1);
         RANDOM_SUNNY_SNOW = BUILDER
                 .comment("随机晴雪效果。")
-                .define("merrySnowWeather", false);
+                .define("randomSunnySnow", false);
         BUILDER.pop();
 
         BUILDER.push("Biome Snow");

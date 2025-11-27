@@ -4,9 +4,7 @@ import com.sighs.merrysnow.Config;
 import com.sighs.merrysnow.init.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Biome.class)
-public class BiomeMixin {
+public class ClientBiomeMixin {
     @Inject(method = "getPrecipitationAt", at = @At("HEAD"), cancellable = true)
     private void noWeather(BlockPos p_265163_, CallbackInfoReturnable<Biome.Precipitation> cir) {
         String id = Utils.getBiomeId(Minecraft.getInstance().level, (Biome) (Object) this);
