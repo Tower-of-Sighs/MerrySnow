@@ -3,5 +3,36 @@
   "key.merrysnow.sunny_snow": "Sunny snow coefficient adjustment",
 
   "message.merrysnow.sunny_snow": "Sunny snow coefficient: %s",
-  "message.merrysnow.copy": "Click Copy"
+  "message.merrysnow.copy": "Click Copy",
+
+  "config.merrysnow.title": "MerrySnow Settings",
+  "config.merrysnow.merry_snow": "Merry Snow",
+  "config.merrysnow.sunny_snow": "Sunny Snow",
+  "config.merrysnow.biome_snow": "Biome Snow",
+
+  "config.merrysnow.merry_snow.merrySnowLayer": "Snow layer no collision",
+  "config.merrysnow.merry_snow.merrySnowLayer.tooltip": "Snow layer blocks have no collision",
+  "config.merrysnow.merry_snow.merryPowderSnow": "Powder snow step collision, no freeze",
+  "config.merrysnow.merry_snow.merryPowderSnow.tooltip": "Powder snow has step-height collision and does not freeze entities",
+  "config.merrysnow.merry_snow.merrySnowWeather": "No mob spawning in snowy chunks",
+  "config.merrysnow.merry_snow.merrySnowWeather.tooltip": "Prevent mob spawning in snowy chunks",
+
+  "config.merrysnow.sunny_snow.sunnySnow": "Sunny snow coefficient",
+  "config.merrysnow.sunny_snow.sunnySnow.tooltip": "Coefficient scaling snowy weather intensity (0.1–1.0)",
+  "config.merrysnow.sunny_snow.randomSunnySnow": "Random sunny snow",
+  "config.merrysnow.sunny_snow.randomSunnySnow.tooltip": "Randomize the sunny snow coefficient",
+
+  "config.merrysnow.biome_snow.enforceSnowWeather": "Force snow weather (global)",
+  "config.merrysnow.biome_snow.enforceSnowWeather.tooltip": "Global force snow weather: default uses biome logic",
+  "config.merrysnow.biome_snow.enforceSnowCover": "Force snow cover (global)",
+  "config.merrysnow.biome_snow.enforceSnowCover.tooltip": "Global force snow cover",
+  "config.merrysnow.biome_snow.enforceIceFreeze": "Force ice freeze (global)",
+  "config.merrysnow.biome_snow.enforceIceFreeze.tooltip": "Global force ice freezing",
+
+  "config.merrysnow.biome_snow.weatherModify": "Weather rules",
+  "config.merrysnow.biome_snow.weatherModify.tooltip": "Per-biome weather override: \"namespace:biome=snow|rain|none\"",
+  "config.merrysnow.biome_snow.snowModify": "Snow cover rules",
+  "config.merrysnow.biome_snow.snowModify.tooltip": "Per-biome snow cover: \"namespace:biome=true|false\"",
+  "config.merrysnow.biome_snow.iceModify": "Ice freeze rules",
+  "config.merrysnow.biome_snow.iceModify.tooltip": "Per-biome ice freeze: \"namespace:biome=true|false\""
 }

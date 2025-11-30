@@ -27,6 +27,8 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven { url "https://maven.shedaniel.me/" }
+    maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
 dependencies {
@@ -45,6 +47,11 @@ dependencies {
     implementation files("libs/antlr4-runtime-4.13.1.jar")
     implementation files("libs/glsl-transformer-3.0.0-pre3.jar")
     implementation files("libs/jcpp-1.4.14.jar")
+
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {

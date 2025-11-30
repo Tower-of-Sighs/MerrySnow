@@ -4,7 +4,10 @@
   "version": "${version}",
   "name": "MerrySnow",
   "description": "Snowy magic.",
-  "authors": [],
+  "authors": [
+    "Flechazo",
+    "MerrySnow"
+  ],
   "contact": {},
   "license": "GPL-3.0",
   "icon": "assets/merrysnow/icon.png",
@@ -15,6 +18,9 @@
     ],
     "main": [
       "com.sighs.merrysnow.MerrySnow"
+    ],
+    "modmenu": [
+      "com.sighs.merrysnow.compat.modmenu.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -23,7 +29,8 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "~1.21.9",
+    "forgeconfigapiport": "*"
   },
   "accessWidener" : "merrysnow.accesswidener"
 }

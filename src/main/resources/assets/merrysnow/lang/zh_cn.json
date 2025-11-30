@@ -3,5 +3,36 @@
   "key.merrysnow.sunny_snow": "晴雪系数调整",
 
   "message.merrysnow.sunny_snow": "晴雪系数: %s",
-  "message.merrysnow.copy": "点击复制"
+  "message.merrysnow.copy": "点击复制",
+
+  "config.merrysnow.title": "瑞雪物语 设置",
+  "config.merrysnow.merry_snow": "瑞雪功能",
+  "config.merrysnow.sunny_snow": "晴雪效果",
+  "config.merrysnow.biome_snow": "群系降雪",
+
+  "config.merrysnow.merry_snow.merrySnowLayer": "雪层无碰撞",
+  "config.merrysnow.merry_snow.merrySnowLayer.tooltip": "雪层方块无碰撞",
+  "config.merrysnow.merry_snow.merryPowderSnow": "细雪台阶碰撞且无冷冻伤害",
+  "config.merrysnow.merry_snow.merryPowderSnow.tooltip": "细雪具有台阶高度碰撞且不造成冻结",
+  "config.merrysnow.merry_snow.merrySnowWeather": "下雪区块不刷怪",
+  "config.merrysnow.merry_snow.merrySnowWeather.tooltip": "下雪区块不生成怪物",
+
+  "config.merrysnow.sunny_snow.sunnySnow": "晴雪系数",
+  "config.merrysnow.sunny_snow.sunnySnow.tooltip": "渲染时缩放降雪强度（0.1–1.0）",
+  "config.merrysnow.sunny_snow.randomSunnySnow": "随机晴雪效果",
+  "config.merrysnow.sunny_snow.randomSunnySnow.tooltip": "随机化晴雪系数",
+
+  "config.merrysnow.biome_snow.enforceSnowWeather": "全群系下雪（全局）",
+  "config.merrysnow.biome_snow.enforceSnowWeather.tooltip": "全局强制雪天：default 使用群系逻辑",
+  "config.merrysnow.biome_snow.enforceSnowCover": "全群系积雪（全局）",
+  "config.merrysnow.biome_snow.enforceSnowCover.tooltip": "全局强制积雪",
+  "config.merrysnow.biome_snow.enforceIceFreeze": "全群系结冰（全局）",
+  "config.merrysnow.biome_snow.enforceIceFreeze.tooltip": "全局强制结冰",
+
+  "config.merrysnow.biome_snow.weatherModify": "天气规则",
+  "config.merrysnow.biome_snow.weatherModify.tooltip": "按群系覆盖天气：\"命名空间:群系=snow|rain|none\"",
+  "config.merrysnow.biome_snow.snowModify": "积雪规则",
+  "config.merrysnow.biome_snow.snowModify.tooltip": "按群系积雪：\"命名空间:群系=true|false\"",
+  "config.merrysnow.biome_snow.iceModify": "结冰规则",
+  "config.merrysnow.biome_snow.iceModify.tooltip": "按群系结冰：\"命名空间:群系=true|false\""
 }
