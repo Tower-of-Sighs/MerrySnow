@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sighs.merrysnow.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BaseSpawnerMixin",
+    "EntityMixin",
+    "NaturalSpawnerMixin",
+    "PowderSnowBlockMixin",
+    "ServerBiomeMixin",
+    "SnowLayerBlockMixin",
+    "SpawnPlacementsMixin",
+    "SpawnUtilMixin"
+  ],
+  "client": [
+    "ClientBiomeMixin",
+    "KeyboardHandlerMixin",
+    "LevelMixin",
+    "MouseHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "key.categories.merrysnow": "MerrySnow",
+  "key.merrysnow.sunny_snow": "Sunny snow coefficient adjustment",
+
+  "message.merrysnow.sunny_snow": "Sunny snow coefficient: %s",
+  "message.merrysnow.copy": "Click Copy"
+}
