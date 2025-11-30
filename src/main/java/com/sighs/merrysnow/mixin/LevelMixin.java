@@ -20,7 +20,7 @@ public abstract class LevelMixin {
 
     @Shadow
     @Final
-    private boolean isClientSide;
+    public boolean isClientSide;
 
     @Inject(method = "getRainLevel", at = @At("RETURN"), cancellable = true)
     private void clear(float p_46723_, CallbackInfoReturnable<Float> cir) {

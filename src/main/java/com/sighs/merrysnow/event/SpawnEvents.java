@@ -4,9 +4,9 @@ import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.ServerLevelAccessor;
 
@@ -51,11 +51,11 @@ public class SpawnEvents {
 
     @FunctionalInterface
     public interface SpawnPlacementCheck {
-        Result onCheck(EntityType<?> entityType, ServerLevelAccessor level, EntitySpawnReason spawnType, BlockPos pos, RandomSource random, boolean defaultResult);
+        Result onCheck(EntityType<?> entityType, ServerLevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random, boolean defaultResult);
     }
 
     @FunctionalInterface
     public interface PositionCheck {
-        Result onCheck(Mob mob, ServerLevelAccessor level, EntitySpawnReason spawnType, BaseSpawner spawner);
+        Result onCheck(Mob mob, ServerLevelAccessor level, MobSpawnType spawnType, BaseSpawner spawner);
     }
 }

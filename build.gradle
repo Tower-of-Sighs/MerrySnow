@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = project.archives_base_name
+    archivesName = "${archives_base_name}-fabric-${minecraft_version}"
 }
 
 loom {
@@ -40,8 +40,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.fcap_version}"
-    modImplementation "curse.maven:sodium-394468:7207593"
-    modImplementation "curse.maven:irisshaders-455508:7088028"
+    modImplementation "curse.maven:sodium-394468:6382649"
+    modImplementation "curse.maven:irisshaders-455508:6213635"
 
     // fuck loom
     implementation files("libs/antlr4-runtime-4.13.1.jar")

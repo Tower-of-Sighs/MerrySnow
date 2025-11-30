@@ -4,8 +4,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.sighs.merrysnow.event.SpawnEvents;
-import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.BaseSpawner;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -25,13 +25,13 @@ public class BaseSpawnerMixin {
     private boolean merrysnow$wrapSpawnerObstruction(Mob mob, LevelReader level, Operation<Boolean> original, @Local SpawnData spawnData) {
         var serverAccessor = (ServerLevelAccessor) level;
         var spawner = (BaseSpawner) (Object) this;
-        var result = SpawnEvents.POSITION_CHECK.invoker().onCheck(mob, serverAccessor, EntitySpawnReason.SPAWNER, spawner);
+        var result = SpawnEvents.POSITION_CHECK.invoker().onCheck(mob, serverAccessor, MobSpawnType.SPAWNER, spawner);
         if (result == SpawnEvents.Result.SUCCEED) return true;
         if (result == SpawnEvents.Result.FAIL) return false;
         if (spawnData.getCustomSpawnRules().isPresent()) {
             return original.call(mob, level);
         }
-        boolean rules = mob.checkSpawnRules(serverAccessor, EntitySpawnReason.SPAWNER);
+        boolean rules = mob.checkSpawnRules(serverAccessor, MobSpawnType.SPAWNER);
         boolean obstruction = original.call(mob, level);
         return rules && obstruction;
     }

@@ -56,10 +56,9 @@ public class MerryCommands {
         MutableComponent message = Component.literal(displayText)
                 .withStyle(Style.EMPTY
                         .withColor(ChatFormatting.AQUA)
-                        .withClickEvent(new ClickEvent.CopyToClipboard(copyText))
-                        .withHoverEvent(new HoverEvent.ShowText(
-                                Component.translatable("message.merrysnow.copy")
-                        ))
+                        .withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, copyText))
+                        .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                                Component.translatable("message.merrysnow.copy")))
                 );
 
         player.sendSystemMessage(message);

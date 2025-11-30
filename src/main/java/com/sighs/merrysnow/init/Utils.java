@@ -35,7 +35,7 @@ public class Utils {
 
     public static String getBiomeId(LevelReader level, Biome biome) {
         try {
-            ResourceLocation rl = level.registryAccess().lookupOrThrow(Registries.BIOME).getKey(biome);
+            ResourceLocation rl = level.registryAccess().registryOrThrow(Registries.BIOME).getKey(biome);
             return rl.toString();
         } catch (Exception ignored) {
         }
@@ -49,7 +49,7 @@ public class Utils {
     public static String getAlBiomeId(Player player) {
         List<String> result = new ArrayList<>();
         try {
-            player.level().registryAccess().lookupOrThrow(Registries.BIOME).keySet().forEach(r -> result.add(r.toString()));
+            player.level().registryAccess().registryOrThrow(Registries.BIOME).keySet().forEach(r -> result.add(r.toString()));
         } catch (Exception ignored) {
         }
         return toJsonArray(result);

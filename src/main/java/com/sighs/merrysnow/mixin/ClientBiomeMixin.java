@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = Biome.class)
 public class ClientBiomeMixin {
     @Inject(method = "getPrecipitationAt", at = @At("HEAD"), cancellable = true)
-    private void noWeather(BlockPos blockPos, int i, CallbackInfoReturnable<Biome.Precipitation> cir) {
+    private void noWeather(BlockPos blockPos, CallbackInfoReturnable<Biome.Precipitation> cir) {
         String id = Utils.getBiomeId(Minecraft.getInstance().level, (Biome) (Object) this);
         String enforce = Config.ENFORCE_SNOW_WEATHER.get();
         if (!"default".equals(enforce)) {
@@ -31,13 +31,27 @@ public class ClientBiomeMixin {
         }
     }
 
-    @Redirect(method = "getPrecipitationAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;coldEnoughToSnow(Lnet/minecraft/core/BlockPos;I)Z"))
-    private boolean customSnowWeather(Biome biome, BlockPos blockPos, int i) {
+    @Inject(method = "hasPrecipitation", at = @At("HEAD"), cancellable = true)
+    private void forceHasPrecipitation(CallbackInfoReturnable<Boolean> cir) {
+        String enforce = Config.ENFORCE_SNOW_WEATHER.get();
+        if (!"default".equals(enforce)) {
+            cir.setReturnValue(true);
+            return;
+        }
+        String id = Utils.getBiomeId(Minecraft.getInstance().level, (Biome) (Object) this);
+        String result = Config.getWeatherModify(id);
+        if (!"default".equals(result) && !"none".equals(result)) {
+            cir.setReturnValue(true);
+        }
+    }
+
+    @Redirect(method = "getPrecipitationAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;coldEnoughToSnow(Lnet/minecraft/core/BlockPos;)Z"))
+    private boolean customSnowWeather(Biome biome, BlockPos blockPos) {
         if (Config.ENFORCE_SNOW_WEATHER.get().equals("default")) {
             String id = Utils.getBiomeId(Minecraft.getInstance().level, biome);
             String result = Config.getWeatherModify(id);
             if (result.equals("default")) {
-                return biome.coldEnoughToSnow(blockPos, i);
+                return biome.coldEnoughToSnow(blockPos);
             } else return result.equals("snow");
         } else return Boolean.parseBoolean(Config.ENFORCE_SNOW_WEATHER.get());
     }

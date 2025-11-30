@@ -10,7 +10,7 @@ public class ClientUtils {
         if (glfwKeyCode == -1) return false;
 
         var minecraft = Minecraft.getInstance();
-        long windowHandle = minecraft.getWindow().handle();
+        long windowHandle = minecraft.getWindow().getWindow();
         if (windowHandle == 0L) return false;
 
         // GLFW 是否初始化且有效
