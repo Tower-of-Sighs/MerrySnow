@@ -40,8 +40,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.fcap_version}"
-    modImplementation "curse.maven:sodium-394468:6382649"
-    modImplementation "curse.maven:irisshaders-455508:6213635"
+    modImplementation "curse.maven:sodium-394468:6260639"
+    modImplementation "curse.maven:irisshaders-455508:6258195"
 
     // fuck loom
     implementation files("libs/antlr4-runtime-4.13.1.jar")

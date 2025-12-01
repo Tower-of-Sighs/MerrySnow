@@ -27,9 +27,9 @@
     "merrysnow.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": "1.21.1",
+    "minecraft": "1.20.1",
     "forgeconfigapiport": "*"
   },
   "accessWidener" : "merrysnow.accesswidener"

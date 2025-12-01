@@ -1,28 +1,28 @@
 package com.sighs.merrysnow;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+
+import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class Config {
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-    public static ModConfigSpec.ConfigValue<Boolean> MERRY_SNOW_LAYER;
-    public static ModConfigSpec.ConfigValue<Boolean> MERRY_POWDER_SNOW;
-    public static ModConfigSpec.ConfigValue<Boolean> MERRY_SNOW_WEATHER;
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_LAYER;
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_POWDER_SNOW;
+    public static ForgeConfigSpec.ConfigValue<Boolean> MERRY_SNOW_WEATHER;
 
-    public static ModConfigSpec.DoubleValue SUNNY_SNOW;
-    public static ModConfigSpec.ConfigValue<Boolean> RANDOM_SUNNY_SNOW;
+    public static ForgeConfigSpec.DoubleValue SUNNY_SNOW;
+    public static ForgeConfigSpec.ConfigValue<Boolean> RANDOM_SUNNY_SNOW;
 
-    public static ModConfigSpec.ConfigValue<String> ENFORCE_SNOW_WEATHER;
-    public static ModConfigSpec.ConfigValue<String> ENFORCE_SNOW_COVER;
-    public static ModConfigSpec.ConfigValue<String> ENFORCE_ICE_FREEZE;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> WEATHER_MODIFY;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> SNOW_MODIFY;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> FREEZE_MODIFY;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_SNOW_WEATHER;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_SNOW_COVER;
+    public static ForgeConfigSpec.ConfigValue<String> ENFORCE_ICE_FREEZE;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> WEATHER_MODIFY;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> SNOW_MODIFY;
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> FREEZE_MODIFY;
 
-    static final ModConfigSpec SPEC;
+    static final ForgeConfigSpec SPEC;
 
     static {
         BUILDER.push("Merry Snow");
