@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sighs.merrysnow.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "merrysnow.refmap.json",
+  "mixins": [
+    "EntityMixin",
+    "PowderSnowBlockMixin",
+    "ServerBiomeMixin",
+    "ServerLevelMixin",
+    "SnowLayerBlockMixin"
+  ],
+  "client": [
+    "ClientBiomeMixin",
+    "LevelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

@@ -1,0 +1,12 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'MerrySnow-neoforge-26.1'
+
+include 'common'
+project(':common').projectDir = file('../../common')

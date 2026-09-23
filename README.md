@@ -66,3 +66,62 @@
 - 生物踩过的积雪层数-1，并且在积雪中会受到轻微减速效果，积雪层数越高减速越多。
 - 与下雪、积雪相关的道具，如雪天娃娃。
 - 滑冰玩法。
+
+## 项目结构
+
+本仓库使用 `common + targets/<loader>-<minecraft-version>` 结构，一个 target 对应一个加载器与一个 Minecraft 版本，禁止 universal jar。
+
+```text
+common/                         不依赖 Minecraft 与加载器的共享逻辑与共享资源
+  src/main/java/                规则、DTO 与 SPI 契约（Java 8，无平台依赖）
+  src/main/resources/           所有 target 共用的 assets/lang
+targets/<loader>-<mc-version>/  该加载器与版本的入口、事件、Mixin、配置与 metadata
+gradle/target-conventions/      所有 target 共用的构建约定
+```
+
+- `common` 只放 Java 8 兼容、无 Minecraft/loader 依赖的业务逻辑、DTO、算法和测试。
+- `targets/*` 只放该 target 的入口、注册、事件、Minecraft API、Mixin、网络、渲染和 metadata。
+- 平台差异由各 target 实现 `common` 中的 SPI 契约（`com.sighs.merrysnow.spi`），不用版本判断或反射兼容。
+
+| Target | JDK（构建） | 编译 toolchain |
+| --- | --- | --- |
+| `forge-1.20.1` | 21 | 17 |
+| `fabric-1.20.1` | 21 | 17 |
+| `neoforge-1.21.1` | 21 | 21 |
+| `neoforge-26.1` | 25 | 25 |
+
+## 构建
+
+每个 target 是独立 Gradle 根工程，应在它自己的目录中构建：
+
+```powershell
+cd targets\forge-1.20.1
+.\gradlew.bat clean build
+```
+
+根项目默认只构建 `common`，也可以选择性构建前三个 JDK 21 target：
+
+```powershell
+.\gradlew.bat '-Ptarget=forge-1.20.1' build
+.\gradlew.bat '-Ptarget=fabric-1.20.1' build
+.\gradlew.bat '-Ptarget=neoforge-1.21.1' build
+.\gradlew.bat -PallTargets=true build
+```
+
+`neoforge-26.1` 需要 JDK 25，必须独立构建。
+
+## 发布
+
+每个 target 都提供 `publishMods`，可手动发布其自身的产物至 CurseForge 与 Modrinth。项目 ID 在根 `gradle.properties` 中配置；token 只从环境变量读取：
+
+```powershell
+$env:CURSEFORGE_TOKEN = '...'
+$env:MODRINTH_TOKEN = '...'
+$env:PUBLISH_CHANGELOG = '本次版本的更新说明' # 可选
+
+cd targets\forge-1.20.1
+.\gradlew.bat publishMods
+```
+
+更完整的协作、评审与 CI 规则见 [AGENT.md](AGENT.md) 与 [docs/](docs/)；
+各 target 的实现差异见 [docs/merrysnow-differences.md](docs/merrysnow-differences.md)。
